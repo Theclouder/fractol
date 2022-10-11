@@ -1,0 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/22 22:28:03 by vduchi            #+#    #+#             */
+/*   Updated: 2022/05/30 21:37:23 by vduchi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdarg.h>
+# include <string.h>
+# include <stdlib.h>
+
+int		ft_printf(const char *str, ...);
+
+char	*ft_utoa(unsigned int n);
+
+int		ft_print_int(int c, int *count);
+int		ft_print_char(char c, int *count);
+int		ft_print_str(char *str, int *count);
+int		ft_print_ptr(va_list args, int *count);
+int		ft_print_uint(unsigned int c, int *count);
+int		ft_check(char c, va_list args, int *count);
+int		ft_print_hex(va_list args, int mode, int *count);
+
+int		ft_print_num(unsigned int u, int i, int *count);
+
+char	*ft_itoa(int n);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
+
+#endif
