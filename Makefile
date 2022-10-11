@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/10/04 16:07:42 by vduchi           ###   ########.fr        #
+#    Updated: 2022/10/11 16:30:47 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ clean:
 	@rm -rf $(OBJDIR)
 
 fclean: 		clean
-	@rm -f $(NAME) $(LIBFT) $(MLX)
+	@rm -f $(NAME) $(LIBFT) $(MLX) $(PRINTF)
 	@make -C libft fclean
 	@make -C mlx clean
 	@make -C ft_printf fclean

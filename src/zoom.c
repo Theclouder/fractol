@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:13:56 by vduchi            #+#    #+#             */
-/*   Updated: 2022/10/11 13:37:17 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:30:29 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	mouse_hook(int button, int x, int y, t_all *vars)
 	vars->fractol.x_mouse = ((x - 640) / (320 * vars->fractol.zoom)) - ((x - 640) / (320 * new_zoom)) + vars->fractol.x_mouse;
 	vars->fractol.y_mouse = ((y - 640) / (320 * vars->fractol.zoom)) - ((y - 640) / (320 * new_zoom)) + vars->fractol.y_mouse;
 	vars->fractol.zoom = new_zoom;
-	printf("X: %f\nY: %f\nZoom: %f\nLeft_Right: %f\nUp_Down: %f\n", vars->fractol.x_mouse, vars->fractol.y_mouse, vars->fractol.zoom, vars->fractol.left_right, vars->fractol.up_down);
+	printf("X: %f\nY: %f\nZoom: %f\nLeft_Right: %f\nUp_Down: %f\n", vars->fractol.x_mouse, vars->fractol.y_mouse, \
+			vars->fractol.zoom, vars->fractol.left_right, vars->fractol.up_down);
 	vars->fractol.status = 1;
 	return (0);
 }
