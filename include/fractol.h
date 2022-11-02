@@ -1,9 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
+/*   fractol.h                                          :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */ /*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:59:47 by vduchi            #+#    #+#             */
 /*   Updated: 2022/10/10 16:56:45 by vduchi           ###   ########.fr       */
@@ -34,16 +32,21 @@ typedef struct s_data {
 }	t_data;
 
 typedef struct	s_dtb {
-	int	max_x;
-	int	max_y;
-	int	iter;
-	int	status;
-	float x_mouse;
-	float y_mouse;
-	float up_down;
-	float left_right;
-	float zoom;
-}	t_dtb;
+	int		width;
+	int		height;
+	int		iter;
+	int		color;
+	int 	status;
+	float	max_x;
+	float	min_x;
+	float	max_y;
+	float	min_y;
+	float	x_mouse;
+	float	y_mouse;
+	float	up_down;
+	float	left_right;
+	float	zoom;
+}		t_dtb;
 
 typedef struct s_all {
 	void	*win;

@@ -6,10 +6,9 @@
 /*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:08:54 by vduchi            #+#    #+#             */
-/*   Updated: 2022/10/09 18:49:04 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/10/29 20:01:11 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "fractol.h"
 
 int check_args(int argc, char **argv)
@@ -37,14 +36,19 @@ int	main(int argc, char **argv)
 {
 	t_all vars;
 
-	vars.fractol.max_x = 1281;
-	vars.fractol.max_y = 1281;
+	vars.fractol.width = 1281;
+	vars.fractol.height = 1281;
+	vars.fractol.max_x = 2.0;
+	vars.fractol.min_x = -2.0;
+	vars.fractol.max_y = 2.0;
+	vars.fractol.min_y = -2.0;
 	vars.fractol.x_mouse = 0.0;
 	vars.fractol.y_mouse = 0.0;
 	vars.fractol.up_down = 0.0;
 	vars.fractol.left_right = 0.0;
 	vars.fractol.zoom = 1.0;
 	vars.fractol.iter = 50;
+	vars.fractol.color = 0;
 	vars.fractol.status = 1;
 	if (!check_args(argc, argv))
 		return (0);
