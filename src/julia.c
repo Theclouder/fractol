@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon          +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 16:40:34 by vduchi              #+#  #+#             */
-/*   Updated: 2022/11/11 16:46:30 by vduchi           ###   ########.fr       */
+/*   Created: 2022/11/04 19:59:46 by vduchi            #+#    #+#             */
+/*   Updated: 2022/11/11 23:19:44 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mandelbrot_loop(float c_re, float c_im, int iter)
+int	julia_loop(t_all *vars, float x, float y)
 {
 	int		i;
-	float	x;
-	float	y;
 	float	x_new;
 
 	i = 0;
-	x = 0.0;
-	y = 0.0;
-	while (((x * x) + (y * y)) <= 4 && i < iter)
+	while (((x * x) + (y * y)) <= 4 && i < vars->fractol.iter)
 	{
-		x_new = (x * x) - (y * y) + c_re;
-		y = (2 * x * y) + c_im;
+		x_new = (x * x) - (y * y) + vars->fractol.julia_r;
+		y = (2 * x * y) + vars->fractol.julia_i;
 		x = x_new;
 		i++;
 	}
 	return (i);
 }
 
-void	man_cycle(int col, int row, t_all *vars)
+void	julia_cycle(int col, int row, t_all *vars)
 {
 	float	c_re;
 	float	c_im;
@@ -41,10 +37,10 @@ void	man_cycle(int col, int row, t_all *vars)
 		vars->fractol.min_x)) + vars->fractol.min_x;
 	c_im = (((float)row / (float)vars->fractol.height) * (vars->fractol.max_y - \
 		vars->fractol.min_y)) + vars->fractol.min_y;
-	color_grad(vars, mandelbrot_loop(c_re, c_im, vars->fractol.iter), col, row);
+	color_grad(vars, julia_loop(vars, c_re, c_im), col, row);
 }
 
-void	mandelbrot(t_all *vars)
+void	julia(t_all *vars)
 {
 	int	x;
 	int	y;
@@ -55,7 +51,7 @@ void	mandelbrot(t_all *vars)
 	{
 		y = 0;
 		while (y < vars->fractol.height)
-			man_cycle(x, y++, vars);
+			julia_cycle(x, y++, vars);
 		x++;
 	}
 }

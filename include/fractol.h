@@ -46,6 +46,8 @@ typedef struct	s_dtb {
 	float	up_down;
 	float	left_right;
 	float	zoom;
+	float	julia_r;
+	float	julia_i;
 }		t_dtb;
 
 typedef struct s_all {
@@ -53,15 +55,23 @@ typedef struct s_all {
 	void	*mlx;
 	t_data	img;
 	t_dtb	fractol;
+	char	type;
 }	t_all;
 
-void  free_vars(t_all *vars);
-
+int	loop_hook(t_all *vars);
 int	create_window(t_all *vars);
-
-void  mandelbrot(t_all *vars);
-void  my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
+int	clear_all(t_all *vars, char *str);
+int	key_hook(int keycode, t_all *vars);
+int	close_window(int keycode, t_all *vars);
+int	atof_julia(const char *str, t_all *vars, int mod);
 int	mouse_hook(int button, int x, int y, t_all *vars);
+
+void	julia(t_all *vars);
+void	hook_mlx(t_all *vars);
+void	free_vars(t_all *vars);
+void	mandelbrot(t_all *vars);
+void	init_array(t_all *vars);
+void	color_grad(t_all *vars, int i, int col, int row);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

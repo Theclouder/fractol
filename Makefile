@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/10/11 16:30:47 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/11 23:42:41 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ MLX			=	libmlx.a
 PRINTF		=	libftprintf.a
 
 HEAD		=	include/fractol.h
-SRCS		=	src/main.c src/window.c src/mandelbrot.c src/zoom.c
+SRCS		=	src/main.c src/window.c src/mandelbrot.c src/zoom.c src/colour.c \
+				src/julia.c src/atof_julia.c src/utils.c src/hooks.c
 #OBJS		=	$(patsubst $(SRCSDIR)/%,$(OBJDIR)/%,$(SRCS:.c=.o))
 
 CFLAGS		+= 	-Wall -Werror -Wextra -O3 $(addprefix -I , $(DIRS))
