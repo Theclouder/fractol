@@ -6,13 +6,15 @@
 /*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:08:54 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/11 23:30:50 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/13 23:26:12 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
 
-int	print_help(void)
+int	print_help(int index)
 {
+	if (index != 0)
+		error_msg(index);
 	ft_printf("You have to put one of these arguments:\n\t1. J (for Julia) ");
 	ft_printf("+ z_re + z_im (Both values must be between 2.0 and -2.0)\n");
 	ft_printf("\t2. M (for Mandelbrot)\n");
@@ -28,13 +30,10 @@ int	check_julia_par(char **argv, t_all *vars)
 	}
 	else if (atof_julia(argv[2], vars, 1) == -1 \
 		|| atof_julia(argv[3], vars, 2) == -1)
-		return (print_help());
+		return (print_help(0));
 	else if (atof_julia(argv[2], vars, 1) == 0 \
 		|| atof_julia(argv[3], vars, 2) == 0)
-	{
-		ft_printf("One of the arguments is not a number!\n");
-		return (print_help());
-	}
+		return (print_help(6));
 	vars->type = 'J';
 	return (1);
 }
@@ -42,19 +41,13 @@ int	check_julia_par(char **argv, t_all *vars)
 int	check_args(int argc, char **argv, t_all *vars)
 {
 	if (argc == 1)
-		return (print_help());
+		return (print_help(0));
 	else if (argc >= 5 || (argc >= 3 && !ft_strncmp(argv[1], "M", 1)) || \
 		(argc == 3 && !ft_strncmp(argv[1], "J", 1)))
-	{
-		ft_printf("Wrong number of argument!\n");
-		return (print_help());
-	}
+		return (print_help(4));
 	else if (argc >= 2 && (ft_strncmp(argv[1], "M", 1) && \
 		ft_strncmp(argv[1], "J", 1)))
-	{
-		ft_printf("Wrong arguments!\n");
-		return (print_help());
-	}
+		return (print_help(5));
 	else if (!ft_strncmp(argv[1], "J", 1))
 		return (check_julia_par(argv, vars));
 	else if (!ft_strncmp(argv[1], "M", 1))
@@ -67,12 +60,14 @@ int	check_args(int argc, char **argv, t_all *vars)
 
 int	main(int argc, char **argv)
 {
+	int		res;
 	t_all	vars;
 
 	init_array(&vars);
 	if (!check_args(argc, argv, &vars))
 		return (0);
-	if (!create_window(&vars))
-		return (0);
+	res = create_window(&vars);
+	if (res != 0)
+		clear_all(&vars, res);
 	return (0);
 }

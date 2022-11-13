@@ -6,44 +6,40 @@
 /*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 23:22:11 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/12 00:10:23 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/13 23:26:51 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	clear_all(t_all *vars, char *str)
+void	error_msg(int index)
 {
-	if (str)
-		ft_printf(str);
-	if (vars->mlx)
-		free(vars->mlx);
-	printf("%p\n%p\n", vars, vars->mlx);
-//	if (vars->img.addr)
-//	{
-//		ft_printf("1\n");
-//		free(vars->img.addr);
-//		vars->img.addr = NULL;
-//	}
-//	if (vars->img.img)
-//	{
-//		ft_printf("2\n");
-//		free(vars->img.img);
-//		vars->img.img = NULL;
-//	}
-//	if (vars->win)
-//	{
-//		ft_printf("3\n");
-//		free(vars->win);
-//		vars->win = NULL;
-//	}
-//	if (vars->mlx)
-//	{
-//		ft_printf("4\n");
-//		free(vars->mlx);
-//		vars->mlx = NULL;
-//	}
-	return (0);
+	if (index == 0)
+		ft_printf("Malloc failed!\n");
+	if (index == 1)
+		ft_printf("Window creation failed!\n");
+	if (index == 2)
+		ft_printf("Image creation failed!\n");
+	if (index == 3)
+		ft_printf("Address not set correctly!\n");
+	if (index == 4)
+		ft_printf("Wrong number of arguments!\n");
+	if (index == 5)
+		ft_printf("Wrong arguments!\n");
+	if (index == 6)
+		ft_printf("One of the arguments is not a number!\n");
+	if (index == 7)
+		ft_printf("One of the arguments is more than 2 or less than -2\n");
+}
+
+int	clear_all(t_all *vars, int index)
+{
+	error_msg(index - 1);
+	if (vars->image.mlx && vars->image.img)
+		mlx_destroy_image(vars->image.mlx, vars->image.img);
+	if (vars->image.mlx && vars->image.win)
+		mlx_destroy_window(vars->image.mlx, vars->image.win);
+	exit(0);
 }
 
 void	hook_mlx(t_all *vars)
@@ -52,12 +48,13 @@ void	hook_mlx(t_all *vars)
 		mandelbrot(vars);
 	else if (vars->type == 'J')
 		julia(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
-	mlx_key_hook(vars->win, key_hook, vars);
-	mlx_mouse_hook(vars->win, mouse_hook, vars);
-	mlx_hook(vars->win, 17, 0, close_window, &vars);
-	mlx_loop_hook(vars->mlx, loop_hook, vars);
-	mlx_loop(vars->mlx);
+	mlx_put_image_to_window(vars->image.mlx, vars->image.win, \
+		vars->image.img, 0, 0);
+	mlx_key_hook(vars->image.win, key_hook, vars);
+	mlx_mouse_hook(vars->image.win, mouse_hook, vars);
+	mlx_hook(vars->image.win, 17, 0, close_window, &vars);
+	mlx_loop_hook(vars->image.mlx, loop_hook, vars);
+	mlx_loop(vars->image.mlx);
 }
 
 void	init_array(t_all *vars)
@@ -78,4 +75,7 @@ void	init_array(t_all *vars)
 	vars->fractol.status = 1;
 	vars->fractol.julia_r = 0.0;
 	vars->fractol.julia_i = 0.0;
+	vars->image.mlx = NULL;
+	vars->image.win = NULL;
+	vars->image.img = NULL;
 }

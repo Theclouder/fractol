@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 21:29:45 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/11 23:36:59 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/13 22:50:47 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int	loop_hook(t_all *vars)
 		else if (vars->type == 'J')
 			julia(vars);
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+//	mlx_put_image_to_window(vars->image.mlx, vars->image.win, vars->image.img, 0, 0);
 	return (1);
 }

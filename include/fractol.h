@@ -24,7 +24,9 @@
 # include "../ft_printf/include/ft_printf.h"
 
 typedef struct s_data {
-	void  *img;
+	void	*mlx;
+	void	*img;
+	void	*win;
 	char  *addr;
 	int	  bits_per_pixel;
 	int	  line_length;
@@ -51,22 +53,21 @@ typedef struct	s_dtb {
 }		t_dtb;
 
 typedef struct s_all {
-	void	*win;
-	void	*mlx;
-	t_data	img;
+	t_data	image;
 	t_dtb	fractol;
 	char	type;
 }	t_all;
 
 int	loop_hook(t_all *vars);
 int	create_window(t_all *vars);
-int	clear_all(t_all *vars, char *str);
+int	clear_all(t_all *vars, int res);
 int	key_hook(int keycode, t_all *vars);
 int	close_window(int keycode, t_all *vars);
 int	atof_julia(const char *str, t_all *vars, int mod);
 int	mouse_hook(int button, int x, int y, t_all *vars);
 
 void	julia(t_all *vars);
+void	error_msg(int index);
 void	hook_mlx(t_all *vars);
 void	free_vars(t_all *vars);
 void	mandelbrot(t_all *vars);

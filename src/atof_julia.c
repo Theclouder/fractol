@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:20:50 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/11 22:52:20 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/13 23:05:27 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	calculate_float(const char *str, t_all *vars, int mod, float sign)
 	}
 	if ((res * sign) > 2.0 || (res * sign) < -2.0)
 	{
-		ft_printf("One of the arguments is more than 2 or less than -2\n");
+		error_msg(7);
 		return (-1);
 	}
 	if (mod == 1)
