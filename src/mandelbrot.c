@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon          +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 16:40:34 by vduchi              #+#  #+#             */
-/*   Updated: 2022/11/13 22:46:05 by vduchi           ###   ########.fr       */
+/*   Created: 2022/09/26 16:40:34 by vduchi            #+#    #+#             */
+/*   Updated: 2022/11/14 16:58:59 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	mandelbrot_loop(float c_re, float c_im, int iter)
 	while (((x * x) + (y * y)) <= 4 && i < iter)
 	{
 		x_new = (x * x) - (y * y) + c_re;
+//		y = fabs(x * y) + c_im;
 		y = (2 * x * y) + c_im;
 		x = x_new;
 		i++;
@@ -49,8 +50,8 @@ void	mandelbrot(t_all *vars)
 	int	x;
 	int	y;
 
-	vars->fractol.iter = 50 * log10(vars->fractol.zoom + 10);
 	x = 0;
+	vars->fractol.iter = 50 * log10(vars->fractol.zoom + 10);
 	while (x < vars->fractol.width)
 	{
 		y = 0;

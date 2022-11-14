@@ -3,21 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 21:13:15 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/13 23:27:35 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/14 16:58:54 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+//void	my_mlx_pixel_put(t_all *vars, int x, int y, int color)
+//{
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	close_window(int keycode, t_all *vars)
+{
+	(void)vars;
+	keycode = 0;
+	exit_safe(vars, 1);
+	return (0);
 }
 
 int	create_window(t_all *vars)

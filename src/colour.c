@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 20:03:18 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/13 22:49:59 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/14 16:58:58 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,5 @@ void	color_grad(t_all *vars, int i, int col, int row)
 	my_mlx_pixel_put(&vars->image, col, row, (((0 & 0xff) << 24) + \
 		((rgb[0] & 0xff) << 16) + ((rgb[1] & 0xff) << 8) + ((rgb[2] & 0xff))));
 	free(rgb);
+	rgb = NULL;
 }

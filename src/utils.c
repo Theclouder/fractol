@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 23:22:11 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/13 23:26:51 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/14 16:58:51 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	exit_safe(t_all *vars, int index)
+{
+	if (!index)
+		ft_printf("Exit with ESC!\n");
+	else
+		ft_printf("Exit with the cross!\n");
+	clear_all(vars, 0);
+}
+
+void	clear_all(t_all *vars, int index)
+{
+	error_msg(index - 1);
+	if (vars->image.mlx && vars->image.img)
+		mlx_destroy_image(vars->image.mlx, vars->image.img);
+	if (vars->image.mlx && vars->image.win)
+		mlx_destroy_window(vars->image.mlx, vars->image.win);
+	exit(0);
+}
 
 void	error_msg(int index)
 {
@@ -32,16 +51,6 @@ void	error_msg(int index)
 		ft_printf("One of the arguments is more than 2 or less than -2\n");
 }
 
-int	clear_all(t_all *vars, int index)
-{
-	error_msg(index - 1);
-	if (vars->image.mlx && vars->image.img)
-		mlx_destroy_image(vars->image.mlx, vars->image.img);
-	if (vars->image.mlx && vars->image.win)
-		mlx_destroy_window(vars->image.mlx, vars->image.win);
-	exit(0);
-}
-
 void	hook_mlx(t_all *vars)
 {
 	if (vars->type == 'M')
@@ -50,6 +59,7 @@ void	hook_mlx(t_all *vars)
 		julia(vars);
 	mlx_put_image_to_window(vars->image.mlx, vars->image.win, \
 		vars->image.img, 0, 0);
+	vars->fractol.status = 0;
 	mlx_key_hook(vars->image.win, key_hook, vars);
 	mlx_mouse_hook(vars->image.win, mouse_hook, vars);
 	mlx_hook(vars->image.win, 17, 0, close_window, &vars);
@@ -78,4 +88,5 @@ void	init_array(t_all *vars)
 	vars->image.mlx = NULL;
 	vars->image.win = NULL;
 	vars->image.img = NULL;
+	vars->image.addr = NULL;
 }

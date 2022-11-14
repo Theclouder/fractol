@@ -12,7 +12,6 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 
@@ -23,16 +22,18 @@
 # include "../libft/libft.h"
 # include "../ft_printf/include/ft_printf.h"
 
+/*	---		Structure for the mlx and the image values		---  */
 typedef struct s_data {
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	void	*mlx;
 	void	*img;
 	void	*win;
-	char  *addr;
-	int	  bits_per_pixel;
-	int	  line_length;
-	int	  endian;
+	char	*addr;
 }	t_data;
 
+/*  ---		Structure for all the values of the fractals	---  */
 typedef struct	s_dtb {
 	int		width;
 	int		height;
@@ -52,27 +53,45 @@ typedef struct	s_dtb {
 	float	julia_i;
 }		t_dtb;
 
+/*  ---		General structure containing all variables		---  */
 typedef struct s_all {
+	char	type;
 	t_data	image;
 	t_dtb	fractol;
-	char	type;
 }	t_all;
 
+/*  ---		Hooks.c		---  */
 int	loop_hook(t_all *vars);
-int	create_window(t_all *vars);
-int	clear_all(t_all *vars, int res);
 int	key_hook(int keycode, t_all *vars);
-int	close_window(int keycode, t_all *vars);
-int	atof_julia(const char *str, t_all *vars, int mod);
 int	mouse_hook(int button, int x, int y, t_all *vars);
 
-void	julia(t_all *vars);
+/*  ---		Window.c	---  */
+int		create_window(t_all *vars);
+int		close_window(int keycode, t_all *vars);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+//void	my_mlx_pixel_put(t_all *vars, int x, int y, int color);
+
+/*  ---		Atof_julia.c	---  */
+int	atof_julia(const char *str, t_all *vars, int mod);
+
+/*  ---		Utils.c		---  */
 void	error_msg(int index);
 void	hook_mlx(t_all *vars);
-void	free_vars(t_all *vars);
-void	mandelbrot(t_all *vars);
 void	init_array(t_all *vars);
+void	clear_all(t_all *vars, int res);
+void	exit_safe(t_all *vars, int index);
+
+/*  ---		Zoom.c		---  */
+void	zoom_in(t_all *vars, int x, int y);
+void	zoom_out(t_all *vars, int x, int y);
+
+/*  ---		Julia.c		---  */
+void	julia(t_all *vars);
+
+/*  ---		Mandelbrot.c	---  */
+void	mandelbrot(t_all *vars);
+
+/*  ---		Colour.c		---  */
 void	color_grad(t_all *vars, int i, int col, int row);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

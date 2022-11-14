@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:13:56 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/13 22:48:10 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/14 09:59:44 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,4 @@ void	zoom_out(t_all *vars, int x, int y)
 	vars->fractol.max_y += ((((float)vars->fractol.height - (float)y) / 8.0 * \
 		(float)(vars->fractol.max_y - vars->fractol.min_y)) / \
 		(float)vars->fractol.height);
-}
-
-int	mouse_hook(int button, int x, int y, t_all *vars)
-{
-	if (button == 5)
-		zoom_in(vars, x, y);
-	else if (button == 4)
-		zoom_out(vars, x, y);
-	free(vars->image.img);
-	vars->image.img = mlx_new_image(vars->image.mlx, vars->fractol.width, \
-		vars->fractol.height);
-	vars->image.addr = mlx_get_data_addr(vars->image.img, \
-		&vars->image.bits_per_pixel, &vars->image.line_length, &vars->image.endian);
-	vars->fractol.status = 1;
-	return (0);
 }
