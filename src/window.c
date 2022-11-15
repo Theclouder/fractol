@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 21:13:15 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/14 16:58:54 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/15 20:28:48 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,8 @@ int	create_window(t_all *vars)
 	vars->image.mlx = mlx_init();
 	if (!vars->image.mlx)
 		return (1);
-	if (vars->type == 'M')
-		vars->image.win = mlx_new_window(vars->image.mlx, vars->fractol.width, \
-			vars->fractol.height, "Mandelbrot");
-	else if (vars->type == 'J')
-		vars->image.win = mlx_new_window(vars->image.mlx, vars->fractol.width, \
-			vars->fractol.height, "Julia");
+	vars->image.win = mlx_new_window(vars->image.mlx, vars->fractol.width, \
+		vars->fractol.height, vars->string);
 	if (!vars->image.win)
 		return (2);
 	vars->image.img = mlx_new_image(vars->image.mlx, vars->fractol.width, \

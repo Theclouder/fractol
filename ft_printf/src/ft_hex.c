@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hex.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 23:25:50 by vduchi            #+#    #+#             */
-/*   Updated: 2022/06/07 23:09:41 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/15 20:28:48 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+
+static int	return_value(char *str, int *count)
+{
+	if (!ft_print_str(str, 0, count))
+	{
+		free(str);
+		return (0);
+	}
+	free(str);
+	return (1);
+}
 
 static void	ft_calc(int *mode, char *c, unsigned int *x, unsigned long long *p)
 {
@@ -78,13 +89,7 @@ static int	ft_output_hex(int mode, unsigned int x, \
 		i++;
 	}
 	str[i] = '\0';
-	if (!ft_print_str(str, 0, count))
-	{
-		free(str);
-		return (0);
-	}
-	free(str);
-	return (1);
+	return (return_value(str, count));
 }
 
 int	ft_print_hex(unsigned int x, unsigned long long p, \

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:14:52 by vduchi            #+#    #+#             */
-/*   Updated: 2022/06/07 23:03:26 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/15 20:23:36 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
 #include <stdio.h>
+#include "../include/ft_printf.h"
 
 static int	ft_check(char c, va_list args, int *count)
 {
@@ -63,13 +63,17 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (count);
 }
-/*
-int main()
+
+/* int	main(void)
 {
-	int p1;
-	int p2;
-	p1 = ft_printf("\x01\x02\x07\v\x08\f\r\n");
-	p2 = printf("\x01\x02\x07\v\x08\f\r\n");
-	printf("p1: %d\n p2: %d\n", p1, p2);
+	int	p1;
+	int	p2;
+	char	*str;
+
+	str = malloc(4);
+	str[0] = '\0';
+	p1 = ft_printf("My: %p\n", str);
+	p2 = printf("De: %p\n", str);
+	printf("p1: %d\np2: %d\n", p1, p2);
 	return (0);
-}*/
+} */

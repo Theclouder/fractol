@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 02:35:50 by vduchi            #+#    #+#             */
-/*   Updated: 2022/06/07 23:12:40 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/15 20:19:50 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,9 @@ int	ft_print_str(char *str, int mode, int *count)
 	}
 	else
 	{
-		while (len > 0)
-		{
-			if (write (1, &str[len - 1], 1) != 1)
+		while (len-- > 0)
+			if (write (1, &str[len], 1) != 1)
 				return (0);
-			len--;
-		}
 	}
 	return (1);
 }

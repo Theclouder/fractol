@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 16:40:34 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/15 20:28:44 by vduchi           ###   ########.fr       */
+/*   Created: 2022/11/15 19:06:48 by vduchi            #+#    #+#             */
+/*   Updated: 2022/11/15 20:28:45 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mandelbrot_loop(float c_re, float c_im, int iter)
+int	bs_loop(float c_re, float c_im, int iter)
 {
 	int		i;
 	float	x;
@@ -25,14 +25,14 @@ int	mandelbrot_loop(float c_re, float c_im, int iter)
 	while (((x * x) + (y * y)) <= 4 && i < iter)
 	{
 		x_new = (x * x) - (y * y) + c_re;
-		y = (2 * x * y) + c_im;
+		y = (2 * fabs(x) * fabs(y)) + c_im;
 		x = x_new;
 		i++;
 	}
 	return (i);
 }
 
-void	man_cycle(int col, int row, t_all *vars)
+void	bs_cycle(int col, int row, t_all *vars)
 {
 	float	c_re;
 	float	c_im;
@@ -41,10 +41,10 @@ void	man_cycle(int col, int row, t_all *vars)
 		vars->fractol.min_x)) + vars->fractol.min_x;
 	c_im = (((float)row / (float)vars->fractol.height) * (vars->fractol.max_y - \
 		vars->fractol.min_y)) + vars->fractol.min_y;
-	color_grad(vars, mandelbrot_loop(c_re, c_im, vars->fractol.iter), col, row);
+	color_grad(vars, bs_loop(c_re, c_im, vars->fractol.iter), col, row);
 }
 
-void	mandelbrot(t_all *vars)
+void	burning_ship(t_all *vars)
 {
 	int	x;
 	int	y;
@@ -55,7 +55,7 @@ void	mandelbrot(t_all *vars)
 	{
 		y = 0;
 		while (y < vars->fractol.height)
-			man_cycle(x, y++, vars);
+			bs_cycle(x, y++, vars);
 		x++;
 	}
 }
