@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 17:51:59 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/15 18:18:12 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 15:57:56 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,23 +41,24 @@ CC		=	gcc
 CFLAGS	+=	-O2 -w
 
 %.o		:	%.c
-	@echo "\n$(YELLOW)$<    \tcompiled!$(DEF_COLOR)"
+	@echo "$(YELLOW)$<    \tcompiled!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 %.o		:	%.m
-	@echo "\n$(YELLOW)$<  \tcompiled!$(DEF_COLOR)"
+	@echo "$(YELLOW)$<  \tcompiled!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 all		:	$(NOM)
 
 $(NOM)	::
-	@echo "$(ORANGE)\nCompiling mlx...$(DEF_COLOR)"
+	@echo "$(MAGENTA)\nChecking mlx...$(DEF_COLOR)" 
 
 $(NOM)	::	$(OBJ)
+	@echo "$(ORANGE)Creating mlx library...$(DEF_COLOR)"
 	@ar -rcs $(NOM) $(OBJ)
 
 $(NOM)	::
-	@echo "$(GREEN)\nMlx archive ready!$(DEF_COLOR)"
+	@echo "$(GREEN)Mlx archive ready!$(DEF_COLOR)"
 
 clean	:
 	@rm -f $(NOM) $(OBJ) *~

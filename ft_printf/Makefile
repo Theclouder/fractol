@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/16 15:45:06 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 15:57:39 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,19 +46,20 @@ RM			=	rm -rf
 MKDIR		=	mkdir -p
 
 %.o: 		%.c
-	@echo "\n$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<)    \tcompiled!$(DEF_COLOR)"
+	@echo "$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<)  \tcompiled!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(DEP_FLAGS) -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME)	::
-	@echo "$(ORANGE)\nCompiling printf...$(DEF_COLOR)"
+	@echo "$(MAGENTA)\nChecking printf...$(DEF_COLOR)"
 
 $(NAME)	::	$(OBJS)
+	@echo "$(ORANGE)Creating printf library...$(DEF_COLOR)"
 	@ar -rcs $@ $^
 
 $(NAME)	::
-	@echo "$(GREEN)\nPrintf archive ready!$(DEF_COLOR)"
+	@echo "$(GREEN)Printf archive ready!$(DEF_COLOR)"
 
 clean	:
 	@$(RM) $(OBJS)
@@ -66,7 +67,7 @@ clean	:
 
 fclean	:	clean
 	@$(RM) $(NAME)
-	@echo "\n$(BLUE)Printf cleaned!$(DEF_COLOR)"
+	@echo "$(BLUE)\nPrintf cleaned!$(DEF_COLOR)"
 
 re		:	fclean all
 

@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/16 15:44:20 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 16:02:53 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ INC_DIR		=	include/ libft/ mlx/ ft_printf/include/
 LIBFT		=	libft
 MLX			=	mlx
 PRINTF		=	ft_printf
+ALL_LIBS	=	libft/libft.a ft_printf/libftprintf.a mlx/libmlx.a
 
 SRCS		=	src/main.c src/window.c src/mandelbrot.c src/zoom.c src/colour.c \
 				src/julia.c src/atof_julia.c src/utils.c src/hooks.c src/burning_ship.c
@@ -57,7 +58,7 @@ CC			=	gcc
 MKDIR		=	mkdir -p
 
 $(OBJ_DIR)/%.o :	$(SRCS_DIR)/%.c
-	@echo "\n$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<) \tcompiled!$(DEF_COLOR)"
+	@echo "$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<) \tcompiled!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
 all			:
@@ -67,13 +68,14 @@ all			:
 	@$(MAKE) $(NAME)
 
 $(NAME)		::
-	@echo "$(ORANGE)\nCompiling fractol...$(DEF_COLOR)"
+	@echo "$(MAGENTA)\nChecking fractol...$(DEF_COLOR)"
 
-$(NAME)		::	$(OBJ_DIR) $(DEPS_DIR) $(OBJS)
+$(NAME)		::	$(OBJ_DIR) $(DEPS_DIR) $(OBJS) $(ALL_LIBS)
+	@echo "$(ORANGE)Compiling fractol exec...$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 
 $(NAME)		::
-	@echo "$(GREEN)\nFractol executable ready!$(DEF_COLOR)"
+	@echo "$(GREEN)Fractol executable ready!$(DEF_COLOR)"
 
 $(OBJ_DIR)	:
 	@$(MKDIR) $@
@@ -90,7 +92,7 @@ fclean		:	clean
 	@$(MAKE) -C libft fclean
 	@$(MAKE) -C mlx clean
 	@$(MAKE) -C ft_printf fclean
-	@echo "\n$(BLUE)Fractol cleaned!$(DEF_COLOR)"
+	@echo "$(BLUE)\nFractol cleaned!$(DEF_COLOR)"
 
 re			:	fclean all
 

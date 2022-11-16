@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 17:13:31 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/16 15:39:16 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 15:57:47 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ DEPS		=	$(SRCS:.c=.d)
 DEPS_BONUS	=	$(SRCS_BONUS:.c=.d)
 
 %.o		:	%.c
-	@echo "\n$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<)\tcompiled!$(DEF_COLOR)"
+	@echo "$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<)\tcompiled!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(DEP_FLAGS) -c $< -o $@
 
 all		:	$(NAME)
@@ -64,16 +64,17 @@ bonus	::	$(OBJS) $(OBJS_BONUS)
 	@touch $@
 
 bonus	::
-	@echo "$(GREEN)\nLibft bonus archive ready!$(DEF_COLOR)"
+	@echo "$(GREEN)Libft bonus archive ready!$(DEF_COLOR)"
 
 $(NAME)	::
-	@echo "$(ORANGE)\nCompiling libft...$(DEF_COLOR)"
+	@echo "$(MAGENTA)\nChecking libft...$(DEF_COLOR)"
 
 $(NAME)	::	$(OBJS)
+	@echo "$(ORANGE)Creating libft archive...$(DEF_COLOR)"
 	@ar -rsc $@ $(OBJS)
 
 $(NAME)	::
-	@echo "$(GREEN)\nLibft archive ready!$(DEF_COLOR)"
+	@echo "$(GREEN)Libft archive ready!$(DEF_COLOR)"
 
 clean	:
 	@rm -f $(OBJS)
