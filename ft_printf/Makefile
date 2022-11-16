@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/16 13:31:42 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 15:45:06 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ DARK_YELLOW	=	\033[38;5;143m
 NAME		=	libftprintf.a
 
 SRCS		=	src/ft_printf.c src/ft_utils.c src/ft_funcs.c \
-				src/ft_utoa_itoa.c src/ft_hex.c
+				src/ft_int_to_ascii.c src/ft_hex.c
 OBJS		=	$(SRCS:.c=.o)
 DEPS		=	$(SRCS:.c=.d)
 

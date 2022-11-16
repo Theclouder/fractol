@@ -6,12 +6,11 @@
 /*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:58:51 by vduchi            #+#    #+#             */
-/*   Updated: 2022/05/28 22:20:36 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:35:47 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char	*ft_int_to_str(char *str, long int n, int sign, int len)
 {

@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 02:35:50 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/15 20:19:50 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:45:10 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_print_num(unsigned int u, int i, int *count)
 	char	*str;
 
 	if (!i)
-		str = ft_utoa(u);
+		str = ft_uint_to_asc(u);
 	else
-		str = ft_itoa(i);
+		str = ft_int_to_asc(i);
 	if (!str)
 		return (0);
 	if (write (1, str, ft_strlen(str)) != (ssize_t)ft_strlen(str))

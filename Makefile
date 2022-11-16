@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/16 13:31:44 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 15:44:20 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ DEPS_DIR	=	dep
 LIBS_DIR	=	libs
 INC_DIR		=	include/ libft/ mlx/ ft_printf/include/
 
-LIBFT		=	libft.a
-MLX			=	libmlx.a
-PRINTF		=	libftprintf.a
+LIBFT		=	libft
+MLX			=	mlx
+PRINTF		=	ft_printf
 
 SRCS		=	src/main.c src/window.c src/mandelbrot.c src/zoom.c src/colour.c \
 				src/julia.c src/atof_julia.c src/utils.c src/hooks.c src/burning_ship.c
@@ -49,7 +49,7 @@ OBJS		=	$(patsubst $(SRCS_DIR)/%, $(OBJ_DIR)/%, $(SRCS:.c=.o))
 DEPS		=	$(patsubst $(SRCS_DIR)/%, $(DEPS_DIR)/%, $(SRCS:.c=.d))
 
 CFLAGS		+= 	-Wall -Werror -Wextra -O3 $(addprefix -I , $(INC_DIR))
-LDFLAGS		= 	-L libs -lft -lmlx -lftprintf -framework OpenGL -framework AppKit
+LDFLAGS		= 	-L libft -L ft_printf -L mlx -lft -lmlx -lftprintf -framework OpenGL -framework AppKit
 DEPFLAGS	=	-MMD -MP -MF $(DEPS_DIR)/$*.d
 
 RM			=	rm -rf
@@ -60,7 +60,11 @@ $(OBJ_DIR)/%.o :	$(SRCS_DIR)/%.c
 	@echo "\n$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<) \tcompiled!$(DEF_COLOR)"
 	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
-all			:	$(LIBS_DIR) $(LIBFT) $(MLX) $(PRINTF) $(NAME)
+all			:
+	@$(MAKE) -C $(LIBFT)
+	@$(MAKE) -C $(PRINTF)
+	@$(MAKE) -C $(MLX)
+	@$(MAKE) $(NAME)
 
 $(NAME)		::
 	@echo "$(ORANGE)\nCompiling fractol...$(DEF_COLOR)"
@@ -71,25 +75,10 @@ $(NAME)		::	$(OBJ_DIR) $(DEPS_DIR) $(OBJS)
 $(NAME)		::
 	@echo "$(GREEN)\nFractol executable ready!$(DEF_COLOR)"
 
-$(LIBFT)	:
-	@$(MAKE) -C libft
-	@cp libft/$(LIBFT) $(LIBS_DIR)
-
-$(MLX)		:
-	@$(MAKE) -C mlx
-	@cp mlx/$(MLX) $(LIBS_DIR)
-
-$(PRINTF)	:
-	@$(MAKE) -C ft_printf
-	@cp ft_printf/$(PRINTF) $(LIBS_DIR)
-
 $(OBJ_DIR)	:
 	@$(MKDIR) $@
 
 $(DEPS_DIR)	:
-	@$(MKDIR) $@
-
-$(LIBS_DIR)	:
 	@$(MKDIR) $@
 
 clean		:

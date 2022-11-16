@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   ft_int_to_ascii.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vduchi <vduchi@student.42barcelon>         +#+  +:+       +#+        */
+/*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 13:05:08 by vduchi            #+#    #+#             */
-/*   Updated: 2022/06/07 23:10:23 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:45:08 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	ft_count(long int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_int_to_asc(int n)
 {
 	int			len;
 	int			sign;
@@ -88,7 +88,7 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-char	*ft_utoa(unsigned int n)
+char	*ft_uint_to_asc(unsigned int n)
 {
 	int				len;
 	char			*str;
