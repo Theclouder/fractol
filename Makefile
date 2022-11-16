@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/16 12:26:33 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 13:31:44 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS_DIR	=	src
 OBJ_DIR		=	obj
 DEPS_DIR	=	dep
 LIBS_DIR	=	libs
-INC_DIR		=	include/ libft/ mlx/ ft_printf/include/ libs/
+INC_DIR		=	include/ libft/ mlx/ ft_printf/include/
 
 LIBFT		=	libft.a
 MLX			=	libmlx.a

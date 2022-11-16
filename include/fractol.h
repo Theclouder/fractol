@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:16:16 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/15 20:28:47 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:31:41 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int		mouse_hook(int button, int x, int y, t_all *vars);
 
 /*  ---		Window.c	---  */
 int		create_window(t_all *vars);
-int		close_window(int keycode, t_all *vars);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 //void	my_mlx_pixel_put(t_all *vars, int x, int y, int color);
 
@@ -81,8 +80,8 @@ int		atof_julia(const char *str, t_all *vars, int mod);
 void	error_msg(int index);
 void	hook_mlx(t_all *vars);
 void	init_array(t_all *vars);
-void	clear_all(t_all *vars, int res);
-void	exit_safe(t_all *vars, int index);
+int		clear_all(t_all *vars, int res);
+int		exit_safe(t_all *vars, int index);
 
 /*  ---		Zoom.c		---  */
 void	zoom_in(t_all *vars, int x, int y);

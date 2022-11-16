@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 21:13:15 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/15 20:28:48 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:31:41 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	close_window(int keycode, t_all *vars)
-{
-	(void)vars;
-	keycode = 0;
-	exit_safe(vars, 1);
-	return (0);
 }
 
 int	create_window(t_all *vars)

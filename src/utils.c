@@ -6,26 +6,29 @@
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 23:22:11 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/15 20:28:47 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:31:38 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	exit_safe(t_all *vars, int index)
+int	exit_safe(t_all *vars, int index)
 {
 	if (!index)
 		ft_printf("Exit with ESC!\n");
 	else
 		ft_printf("Exit with the cross!\n");
 	clear_all(vars, 0);
+	return (0);
 }
 
-void	clear_all(t_all *vars, int index)
+int	clear_all(t_all *vars, int index)
 {
 	error_msg(index - 1);
 	if (vars->image.mlx && vars->image.img)
+	{
 		mlx_destroy_image(vars->image.mlx, vars->image.img);
+	}
 	if (vars->image.mlx && vars->image.win)
 		mlx_destroy_window(vars->image.mlx, vars->image.win);
 	exit(0);
@@ -64,7 +67,7 @@ void	hook_mlx(t_all *vars)
 	vars->fractol.status = 0;
 	mlx_key_hook(vars->image.win, key_hook, vars);
 	mlx_mouse_hook(vars->image.win, mouse_hook, vars);
-	mlx_hook(vars->image.win, 17, 0, close_window, &vars);
+	mlx_hook(vars->image.win, 17, 0, exit_safe, vars);
 	mlx_loop_hook(vars->image.mlx, loop_hook, vars);
 	mlx_loop(vars->image.mlx);
 }
