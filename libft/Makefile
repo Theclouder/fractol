@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 17:13:31 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/15 20:28:43 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 12:22:45 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS_BONUS	= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 CFLAGS		=	-Wall -Wextra -Werror
-DEP_FLAGS	=	-MMd -MP
+DEP_FLAGS	=	-MMD -MP
 
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
@@ -55,7 +55,7 @@ DEPS_BONUS	=	$(SRCS_BONUS:.c=.d)
 
 %.o		:	%.c
 	@echo "\n$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<)\tcompiled!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DEP_FLAGS) -c $< -o $@
 
 all		:	$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 21:29:45 by vduchi            #+#    #+#             */
-/*   Updated: 2022/11/14 16:58:55 by vduchi           ###   ########.fr       */
+/*   Updated: 2022/11/16 12:15:39 by vduchi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	loop_hook(t_all *vars)
 			mandelbrot(vars);
 		else if (vars->type == 'J')
 			julia(vars);
+		else if (vars->type == 'B')
+			burning_ship(vars);
 		mlx_put_image_to_window(vars->image.mlx, \
 				vars->image.win, vars->image.img, 0, 0);
 	}

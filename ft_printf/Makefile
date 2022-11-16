@@ -6,7 +6,7 @@
 #    By: vduchi <vduchi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/22 22:11:19 by vduchi            #+#    #+#              #
-#    Updated: 2022/11/15 19:40:25 by vduchi           ###   ########.fr        #
+#    Updated: 2022/11/16 12:21:49 by vduchi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ MKDIR		=	mkdir -p
 
 %.o: 		%.c
 	@echo "\n$(YELLOW)$(patsubst $(SRCS_DIR)/%,%, $<)    \tcompiled!$(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DEP_FLAGS) -c $< -o $@
 
 all:		$(NAME)
 
@@ -60,16 +60,16 @@ $(NAME)	::	$(OBJS)
 $(NAME)	::
 	@echo "$(GREEN)\nPrintf archive ready!$(DEF_COLOR)"
 
-clean:
+clean	:
 	@$(RM) $(OBJS)
 	@$(RM) $(DEPS)
 
-fclean:		clean
+fclean	:	clean
 	@$(RM) $(NAME)
 	@echo "\n$(BLUE)Printf cleaned!$(DEF_COLOR)"
 
-re:			fclean all
+re		:	fclean all
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY	:	all clean fclean re
